@@ -1,0 +1,4 @@
+python-dotenv
+src
+setuptools
+wandb
