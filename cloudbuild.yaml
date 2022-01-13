@@ -1,18 +1,15 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'bash'
-  args: ['-c', 'WANDB_KEY=$$SECRET_KEY']
-  secretEnv: ['SECRET_KEY']
-- name: 'gcr.io/cloud-builders/docker'
   args: ['build',
          '--build-arg',
-         'KEY=$WANDB_KEY',
+         'YOUR_API_KEY=$$SECRET_KEY',
          '-t',
-         'gcr.io/linear-rig-337909/group5_proj_cpu_container', 
+         'gcr.io/linear-rig-337909/testing', 
          '.']
+  secretEnv: ['SECRET_KEY']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/linear-rig-337909/group5_proj_cpu_container']
+  args: ['push', 'gcr.io/linear-rig-337909/testing']
 availableSecrets:
   secretManager:
-  - versionName: projects/688801769388/secrets/YOUR_API_KEY:latest
+  - versionName: projects/688801769388/secrets/YOUR_API_KEY/versions/1
     env: 'SECRET_KEY'

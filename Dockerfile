@@ -66,12 +66,11 @@ WORKDIR /root/project
 
 # Copies relevant files
 COPY entrypoint.sh /root/project/entrypoint.sh
-COPY vars.env /root/project/vars.env
-RUN echo $KEY
+
 ENV PYTHONPATH "${PYTHONPATH}:/root/project"
+
 ARG YOUR_API_KEY=local
 ENV YOUR_API_KEY ${YOUR_API_KEY}
 
 # Sets up the entry point to invoke the trainer.
 ENTRYPOINT ["sh", "entrypoint.sh"]
-# ENTRYPOINT ["python3", "-u", "/root/project/src/models/train_model.py"]export YOUR_API_KEY= (my key, secret!)
